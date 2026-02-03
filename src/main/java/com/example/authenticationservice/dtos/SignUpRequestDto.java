@@ -1,4 +1,4 @@
-package dtos;
+package com.example.authenticationservice.dtos;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package models;
+package com.example.authenticationservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;

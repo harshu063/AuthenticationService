@@ -1,4 +1,4 @@
-package models;
+package com.example.authenticationservice.models;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

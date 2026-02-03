@@ -1,14 +1,14 @@
-package models;
+package com.example.authenticationservice.models;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-
+@Entity
 @Getter
 @Setter
 public class Session extends BaseModel {
@@ -16,7 +16,7 @@ public class Session extends BaseModel {
     @ManyToOne
     private User user;
     private Date expiringAt;
-    @Enumerated(EnumType.ORDINAL)
-    private String SessionStatus;
+    @Enumerated(EnumType.STRING)
+    private SessionStatus sessionStatus;
 
 }
