@@ -1,14 +1,24 @@
 package com.example.authenticationservice.controllers;
 
-import com.example.authenticationservice.dtos.*;
-import com.example.authenticationservice.exceptions.UserNotFoundException;
-import com.example.authenticationservice.exceptions.WrongPasswordException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.authenticationservice.dtos.LoginRequestDto;
+import com.example.authenticationservice.dtos.LoginResponseDto;
+import com.example.authenticationservice.dtos.RequestStatus;
+import com.example.authenticationservice.dtos.SignUpRequestDto;
+import com.example.authenticationservice.dtos.SignUpResponseDto;
 import com.example.authenticationservice.services.AuthService;
-import org.springframework.web.bind.annotation.*;
-import java.util.Optional;
+
 
 
 @RestController
@@ -63,5 +73,10 @@ public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto reque
         public boolean validate(@RequestParam("token") String token){
         return AuthService.validate(token);
 }
+
+        @DeleteMapping
+    public void logout(@RequestHeader("Authorization") String token){
+        AuthService.logout(token);
+    }
 
 }

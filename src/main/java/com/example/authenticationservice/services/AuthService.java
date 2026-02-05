@@ -4,6 +4,7 @@ import com.example.authenticationservice.exceptions.UserAlreadyExistsException;
 import com.example.authenticationservice.exceptions.UserNotFoundException;
 import com.example.authenticationservice.exceptions.WrongPasswordException;
 import com.example.authenticationservice.models.Session;
+import com.example.authenticationservice.models.SessionStatus;
 import com.example.authenticationservice.models.User;
 import com.example.authenticationservice.repositories.SessionRepository;
 import io.jsonwebtoken.Claims;
@@ -86,6 +87,10 @@ public class AuthService {
                     .verifyWith(key)
                     .build()
                     .parseSignedClaims(token);
+            Optional<Session> sessionOptional = sessionRepository.findByToken(token);
+             if(!sessionOptional.isPresent()){
+                 return false;
+             }
 
         }catch (Exception e){
             return false;
@@ -93,5 +98,14 @@ public class AuthService {
         }
 
         return true;
+    }
+
+    public void logout(String token) {
+        Optional<Session> sessionOptional = sessionRepository.findByToken(token);
+        if(sessionOptional.isPresent()){
+            Session session = sessionOptional.get();
+            session.setSessionStatus(SessionStatus.ENDED);
+            sessionRepository.save(session);
+        }
     }
 }

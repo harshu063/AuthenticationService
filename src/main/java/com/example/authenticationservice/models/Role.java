@@ -3,7 +3,7 @@ package com.example.authenticationservice.models;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
-import tools.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 @Entity
