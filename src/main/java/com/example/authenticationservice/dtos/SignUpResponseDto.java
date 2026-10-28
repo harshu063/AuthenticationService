@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SignUpResponseDto {
-    private RequestStatus requestStatus;
-
+    private Long userId;
+    private String email;
 }
